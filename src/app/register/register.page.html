@@ -1,0 +1,68 @@
+<ion-header [@fadeIn]>
+    <ion-toolbar>
+      <ion-title>PickMeUp</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding [@fadeIn]>
+    <div class="register-container" [@slideIn]> 
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Registro</ion-card-title>
+        </ion-card-header>
+  
+        <ion-card-content>
+          <!-- Nombre de Usuario -->
+          <ion-item>
+            <ion-label position="floating">Nombre de Usuario</ion-label>
+            <ion-input [(ngModel)]="username" name="username" placeholder="Nombre de Usuario" required></ion-input>
+          </ion-item>
+  
+          <!-- Correo Electrónico -->
+          <ion-item>
+            <ion-label position="floating">Correo Electrónico</ion-label>
+            <ion-input [(ngModel)]="email" name="email" placeholder="Correo Electrónico" type="email" required></ion-input>
+          </ion-item>
+  
+          <!-- Contraseña -->
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input [(ngModel)]="password" name="password" placeholder="Contraseña" type="password" required></ion-input>
+          </ion-item>
+  
+          <!-- Selección de Rol -->
+          <ion-item>
+            <ion-label>Registrarse como</ion-label>
+            <ion-select [(ngModel)]="role" name="role" required>
+              <ion-select-option value="pasajero">Pasajero</ion-select-option>
+              <ion-select-option value="conductor">Conductor</ion-select-option>
+            </ion-select>
+          </ion-item>
+  
+          <!-- Botón de registro -->
+          <ion-button expand="block" color="primary" (click)="onRegister()">Registrarse</ion-button>
+  
+          <!-- Mostrar errores si los hay -->
+          <p *ngIf="error" class="error">{{ error }}</p>
+        </ion-card-content>
+      </ion-card>
+  
+      <!-- Logo de la app -->
+      <div class="logo-container">
+        <img src="assets/icon/PickMeUpLogoP-removebg-preview.png" alt="Logo" class="app-logo">
+      </div>
+    </div>
+  </ion-content>
+  
+  <ion-footer [@fadeIn]>
+    <ion-toolbar>
+      <ion-buttons slot="start"></ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="navigateToLogin()" class="login-button">
+          <ion-icon name="log-in-outline"></ion-icon>
+          <span class="login-text">Iniciar Sesión</span>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+  
