@@ -4,7 +4,7 @@
     <ion-buttons slot="end">
       <ion-button (click)="logout()">
         <ion-icon name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar Sesión</ion-label>
+        
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -82,6 +82,10 @@
         <ion-icon name="person-circle-outline"></ion-icon>
         <ion-label>Perfil</ion-label>
       </ion-button>
+      <ion-button expand="full" (click)="logout()">
+        Cerrar Sesión
+      </ion-button>
+
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

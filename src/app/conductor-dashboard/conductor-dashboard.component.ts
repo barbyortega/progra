@@ -1,8 +1,10 @@
+//conductor-dashboard.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TripService } from '../services/trip.service';
 import { AuthService } from '../services/auth.service';
-import { Trip } from '../models/trip.model'; // Asegúrate de crear este modelo
+import { Trip } from '../models/trip.model';
+
 
 @Component({
   selector: 'app-conductor-dashboard',
@@ -15,9 +17,11 @@ export class ConductorDashboardComponent implements OnInit {
   error: string = '';
   userName: string = ''; // Para almacenar el nombre del usuario
 
+
   // Propiedades para el mapa
   center: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
   zoom: number = 8;
+
 
   constructor(
     private router: Router,
@@ -25,20 +29,23 @@ export class ConductorDashboardComponent implements OnInit {
     private authService: AuthService
   ) { }
 
+
   ngOnInit() {
     this.loadTrips();
     this.userName = localStorage.getItem('userName') || 'Invitado';
 
+
     // Configura la ubicación inicial del mapa
     this.setInitialMapLocation();
   }
-
+ 
   loadTrips() {
     this.isLoading = true;
     this.tripService.getTrips().subscribe({
       next: (data) => {
         this.trips = data;
         this.isLoading = false;
+        console.log('Conexión a la API exitosa'); // Mensaje en la consola
       },
       error: (err) => {
         this.error = 'No se pudo cargar la información de los viajes.';
@@ -47,6 +54,7 @@ export class ConductorDashboardComponent implements OnInit {
       }
     });
   }
+
 
   setInitialMapLocation() {
     if (navigator.geolocation) {
@@ -64,29 +72,35 @@ export class ConductorDashboardComponent implements OnInit {
     }
   }
 
+
   setDefaultLocation() {
     this.center = { lat: -41.469903, lng: -72.925592 }; // Ubicación de respaldo
     this.zoom = 8; // Ajusta el zoom de respaldo si es necesario
   }
 
+
   viewRoutes() {
     this.router.navigate(['/routes']);
   }
+
 
   requestHelp() {
     // Lógica para solicitar ayuda
     console.log('Solicitar ayuda');
   }
 
+
   viewProfile() {
     this.router.navigate(['/profile']);
   }
 
+
   logout() {
-    // Elimina el nombre del usuario del almacenamiento local y realiza otras acciones necesarias para el cierre de sesión
+    // Limpiar la información de la sesión, por ejemplo:
     localStorage.removeItem('userName');
-    this.authService.logout().subscribe(() => {
-      this.router.navigate(['/login']);
-    });
+    // Redirigir a la página de inicio
+    this.router.navigate(['/home']); // Asegúrate de que esta ruta coincida con tu configuración de rutas
   }
 }
+
+

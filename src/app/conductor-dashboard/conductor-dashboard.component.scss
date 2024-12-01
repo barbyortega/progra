@@ -78,3 +78,13 @@ ion-card-title {
   font-weight: bold; /* Negrita para el título */
   text-align: center; /* Centrar el texto del título */
 }
+/* Estilo para el botón de cerrar sesión */
+ion-button {
+  --color: #fff; /* Cambia el color del texto a blanco */
+  background-color: #004d40; /* Asegúrate de que el fondo contraste bien */
+  border-radius: 20px; /* Opcional: redondear los bordes del botón */
+}
+
+ion-button:hover {
+  background-color: #003d33; /* Color de fondo más oscuro al pasar el ratón */
+}

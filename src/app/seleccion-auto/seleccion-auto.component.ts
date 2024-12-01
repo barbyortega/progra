@@ -1,5 +1,6 @@
 // src/app/seleccion-auto/seleccion-auto.component.ts
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; // Importa el Router
 import { Auto } from '../models/auto.model'; // Importa el modelo
 
 @Component({
@@ -15,6 +16,8 @@ export class SeleccionAutoComponent {
     // Agrega más autos según sea necesario
   ];
 
+  constructor(private router: Router) {} // Inyecta el Router
+
   seleccionarAuto(auto: Auto) {
     console.log('Auto seleccionado:', auto);
   }
@@ -23,5 +26,9 @@ export class SeleccionAutoComponent {
     console.log('Confirmar selección para:', auto);
     console.log('Punto de destino:', auto.puntoDestino);
     // Aquí puedes manejar la confirmación de la selección
+  }
+
+  volver() {
+    this.router.navigate(['/pasajero-dashboard']); // Redirige a la página del pasajero
   }
 }

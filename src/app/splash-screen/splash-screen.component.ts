@@ -11,10 +11,10 @@ export class SplashScreenComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    // Simula un retraso  antes de redirigir a la página principal
+    // Simula un retraso de 3 segundos antes de redirigir a la página principal
     setTimeout(() => {
       this.router.navigate(['/home']); // Redirige a la página principal
-    }, 1000000); 
+    }, 3000); // 3000 ms = 3 segundos
   }
 
   navigateToHome() {

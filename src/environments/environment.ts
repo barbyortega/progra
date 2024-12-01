@@ -7,8 +7,9 @@
 // environment.ts
 export const environment = {
   production: false,
-  googleMapsApiKey: 'AIzaSyBlaWxG1STPhbjIUIRHZTENyRpbxqo0x94'
+  googleMapsApiKey: 'AIzaSyBlaWxG1STPhbjIUIRHZTENyRpbxqo0x94' // Añade tu clave aquí
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

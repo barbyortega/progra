@@ -27,6 +27,12 @@
         <!-- Botón de inicio de sesión -->
         <ion-button expand="block" color="primary" (click)="onLogin()">Iniciar Sesión</ion-button>
 
+        <!-- Enlace para recuperar contraseña -->
+        <p class="forgot-password">
+          <a [routerLink]="['/recuperacion']">¿Olvidaste tu contraseña?</a>
+        </p>
+        
+
         <!-- Mostrar errores si los hay -->
         <p *ngIf="error" class="error">{{ error }}</p>
       </ion-card-content>
@@ -39,9 +45,12 @@
   </div>
 </ion-content>
 
-<ion-footer [@fadeIn]>
+<ion-footer>
   <ion-toolbar>
-    <ion-buttons slot="start"></ion-buttons>
+    <ion-buttons slot="start">
+      
+    </ion-buttons>
+    
     <ion-buttons slot="end">
       <ion-button (click)="navigateToRegister()" class="register-button">
         <ion-icon name="person-add-outline"></ion-icon>

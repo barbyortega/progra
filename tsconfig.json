@@ -19,8 +19,12 @@
     "target": "es2022",
     "module": "es2020",
     "lib": [
-      "es2018", 
+      "es2018",
       "dom"
+    ],
+    "skipLibCheck": true, // Omitir la verificación de tipos en las bibliotecas
+    "typeRoots": [
+      "./node_modules/@types" // Especificar la carpeta de tipos
     ],
     "useDefineForClassFields": false
   },

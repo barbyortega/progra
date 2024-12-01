@@ -14,10 +14,12 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     console.log('Checking authentication...'); // Mensaje de depuración
+
     // Verifica si el usuario está autenticado
     if (!this.authService.isAuthenticated()) {
-      console.log('User is not authenticated, redirecting to not-found...');
-      this.router.navigate(['/not-found']);
+      console.log('User is not authenticated, redirecting to login...');
+      // Redirige al login si el usuario no está autenticado
+      this.router.navigate(['/login']);
       return false;
     }
 
@@ -28,6 +30,7 @@ export class AuthGuard implements CanActivate {
 
     if (requiredRole && userRole !== requiredRole) {
       console.log('User role does not match required role, redirecting to not-found...');
+      // Redirige a la página "not-found" si el rol no coincide
       this.router.navigate(['/not-found']);
       return false;
     }

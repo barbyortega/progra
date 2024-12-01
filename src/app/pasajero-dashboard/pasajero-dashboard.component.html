@@ -26,8 +26,9 @@
   <!-- Barra de búsqueda estilizada -->
   <div class="search-container">
     <ion-item lines="none" class="search-item">
-      <ion-input class="search-input" placeholder="¿A dónde vas?" [(ngModel)]="direccion"></ion-input>
-      <ion-button fill="clear" class="search-button" (click)="encontrarAuto()">
+      <ion-input class="search-input" placeholder="Origen" [(ngModel)]="origen"></ion-input>
+      <ion-input class="search-input" placeholder="Destino" [(ngModel)]="destino"></ion-input>
+      <ion-button fill="clear" class="search-button" (click)="calcularRuta()">
         <ion-icon slot="icon-only" name="search-outline"></ion-icon>
       </ion-button>
     </ion-item>
@@ -35,7 +36,7 @@
 
   <!-- Mapa interactivo -->
   <div class="map-container" [ngClass]="{'loaded': mapLoaded}">
-    <div id="map" [style.height.px]="400" [style.width.%]="100"></div> <!-- Añade un id para inicializar el mapa -->
+    <div id="map" [style.height.px]="400" [style.width.%]="100"></div>
   </div>
 
   <!-- Botón de acción rápida -->
@@ -85,17 +86,20 @@
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button (click)="viewProfile()">
-          <ion-icon name="person-circle-outline"></ion-icon>
-          <ion-label>Cuenta</ion-label>
-        </ion-tab-button>
-        <ion-tab-button (click)="viewHistory()">
-          <ion-icon name="time-outline"></ion-icon>
-          <ion-label>Historial</ion-label>
-        </ion-tab-button>
         <ion-tab-button (click)="requestRide()">
           <ion-icon name="car-outline"></ion-icon>
           <ion-label>Solicitar</ion-label>
+        </ion-tab-button>
+
+        <!-- Botón para Mostrar Rutas -->
+        <ion-tab-button (click)="mostrarRutas()">
+          <ion-icon name="map-outline"></ion-icon>
+          <ion-label>Historial</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="logout()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+          <ion-label>Cerrar Sesión</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
