@@ -5,33 +5,36 @@
 </ion-header>
 
 <ion-content padding [@fadeIn]>
-  <div class="login-container" [@slideIn]> 
+  <!-- Eliminamos el atributo inert aquí, ya que los campos de formulario necesitan ser interactivos -->
+  <div class="login-container" [@slideIn]> <!-- No usamos inert aquí -->
     <ion-card>
       <ion-card-header>
         <ion-card-title>Iniciar Sesión</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
-        <!-- Correo Electrónico -->
-        <ion-item>
-          <ion-label position="floating">Correo Electrónico</ion-label>
-          <ion-input [(ngModel)]="email" name="email" placeholder="Correo Electrónico" type="email" required></ion-input>
-        </ion-item>
+        <!-- Formulario de inicio de sesión -->
+        <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+          <!-- Correo Electrónico -->
+          <ion-item>
+            <ion-label position="floating">Correo Electrónico</ion-label>
+            <ion-input [(ngModel)]="email" name="email" placeholder="Correo Electrónico" type="email" required></ion-input>
+          </ion-item>
 
-        <!-- Contraseña -->
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input [(ngModel)]="password" name="password" placeholder="Contraseña" type="password" required></ion-input>
-        </ion-item>
+          <!-- Contraseña -->
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input [(ngModel)]="password" name="password" placeholder="Contraseña" type="password" required></ion-input>
+          </ion-item>
 
-        <!-- Botón de inicio de sesión -->
-        <ion-button expand="block" color="primary" (click)="onLogin()">Iniciar Sesión</ion-button>
+          <!-- Botón de inicio de sesión -->
+          <ion-button expand="block" color="primary" type="submit">Iniciar Sesión</ion-button>
+        </form>
 
         <!-- Enlace para recuperar contraseña -->
         <p class="forgot-password">
           <a [routerLink]="['/recuperacion']">¿Olvidaste tu contraseña?</a>
         </p>
-        
 
         <!-- Mostrar errores si los hay -->
         <p *ngIf="error" class="error">{{ error }}</p>
@@ -48,9 +51,9 @@
 <ion-footer>
   <ion-toolbar>
     <ion-buttons slot="start">
-      
+      <!-- Puedes agregar botones aquí si es necesario -->
     </ion-buttons>
-    
+
     <ion-buttons slot="end">
       <ion-button (click)="navigateToRegister()" class="register-button">
         <ion-icon name="person-add-outline"></ion-icon>

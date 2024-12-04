@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-img src="assets/icon/PickMeUpLogoP-removebg-preview.png" class="app-logo"></ion-img>
+      <ion-img src="assets/icon/PickMeUpLogoP-removebg-preview.png" class="app-logo" alt="Logo de PickMeUp"></ion-img>
     </ion-buttons>
     <ion-title class="app-title">PickMeUp</ion-title>
     <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="openSettings()">
+      <ion-button fill="clear" (click)="openSettings()" aria-label="Configuraciones">
         <ion-icon name="settings-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -36,12 +36,12 @@
 
   <!-- Mapa interactivo -->
   <div class="map-container" [ngClass]="{'loaded': mapLoaded}">
-    <div id="map" [style.height.px]="400" [style.width.%]="100"></div>
+    <div id="map" [style.height.px]="400" [style.width.%]="100" aria-label="Mapa interactivo de PickMeUp, donde puedes seleccionar tu destino"></div>
   </div>
 
   <!-- Botón de acción rápida -->
   <div class="select-auto-button">
-    <ion-button expand="block" color="primary" class="styled-button" (click)="seleccionarAuto()">
+    <ion-button expand="block" color="primary" class="styled-button" (click)="seleccionarAuto()" aria-label="Seleccionar un vehículo">
       Seleccionar Auto
     </ion-button>
     <ion-icon name="car-outline" class="car-icon"></ion-icon>
@@ -86,21 +86,21 @@
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button (click)="requestRide()">
+        <ion-tab-button (click)="requestRide()" aria-label="Solicitar un viaje">
           <ion-icon name="car-outline"></ion-icon>
           <ion-label>Solicitar</ion-label>
         </ion-tab-button>
-
+        
         <!-- Botón para Mostrar Rutas -->
         <ion-tab-button (click)="mostrarRutas()">
           <ion-icon name="map-outline"></ion-icon>
           <ion-label>Historial</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button (click)="logout()">
+        <ion-button expand="full" (click)="logout()" aria-label="Cerrar sesión">
           <ion-icon name="arrow-back-outline"></ion-icon>
-          <ion-label>Cerrar Sesión</ion-label>
-        </ion-tab-button>
+          Cerrar Sesión
+        </ion-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-toolbar>

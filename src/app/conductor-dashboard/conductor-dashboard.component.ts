@@ -1,106 +1,96 @@
-//conductor-dashboard.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GoogleMapsService } from '../services/google-maps.service';
 import { TripService } from '../services/trip.service';
 import { AuthService } from '../services/auth.service';
 import { Trip } from '../models/trip.model';
 
+declare var google: any;
 
 @Component({
   selector: 'app-conductor-dashboard',
   templateUrl: './conductor-dashboard.component.html',
   styleUrls: ['./conductor-dashboard.component.scss']
 })
-export class ConductorDashboardComponent implements OnInit {
-  trips: Trip[] = []; // Usa el modelo Trip en lugar de any[]
+export class ConductorDashboardComponent implements AfterViewInit {
+  trips: Trip[] = [];
   isLoading: boolean = false;
   error: string = '';
-  userName: string = ''; // Para almacenar el nombre del usuario
-
-
-  // Propiedades para el mapa
-  center: google.maps.LatLngLiteral = { lat: 0, lng: 0 };
-  zoom: number = 8;
-
+  userName: string = '';
+  // Coordenadas de la dirección específica
+  center: google.maps.LatLngLiteral = { lat: -41.469903, lng: -72.925592 };
+  zoom: number = 12;  // Aumenté el zoom para que sea más cercano a la ubicación
+  map: google.maps.Map | undefined;
 
   constructor(
     private router: Router,
     private tripService: TripService,
-    private authService: AuthService
+    private authService: AuthService,
+    private googleMapsService: GoogleMapsService
   ) { }
 
-
-  ngOnInit() {
+  ngAfterViewInit() {
     this.loadTrips();
     this.userName = localStorage.getItem('userName') || 'Invitado';
 
-
-    // Configura la ubicación inicial del mapa
-    this.setInitialMapLocation();
+    // Carga la API de Google Maps
+    this.googleMapsService.loadMapsAPIFunction().then(() => {
+      // Esperar a que el elemento #map esté presente antes de inicializar el mapa
+      const mapElement = document.getElementById('map');
+      if (!mapElement) {
+        console.error("El elemento del mapa no existe.");
+        return;
+      }
+      this.initMap(mapElement);  // Llamamos a initMap con el elemento #map ya verificado
+    }).catch((error) => {
+      console.error('Error al cargar la API de Google Maps:', error);
+    });
   }
- 
+
   loadTrips() {
     this.isLoading = true;
     this.tripService.getTrips().subscribe({
       next: (data) => {
         this.trips = data;
         this.isLoading = false;
-        console.log('Conexión a la API exitosa'); // Mensaje en la consola
+        console.log('Conexión a la API exitosa');
       },
       error: (err) => {
         this.error = 'No se pudo cargar la información de los viajes.';
-        console.error(err); // Log de error para mayor visibilidad
+        console.error(err);
         this.isLoading = false;
       }
     });
   }
 
-
-  setInitialMapLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        this.zoom = 12; // Ajusta el nivel de zoom si es necesario
-      }, () => {
-        this.setDefaultLocation(); // Llama a una función para establecer ubicación de respaldo
-      });
-    } else {
-      this.setDefaultLocation(); // Llama a una función para establecer ubicación de respaldo
-    }
+  initMap(mapElement: HTMLElement) {
+    // Configuración del mapa con la ubicación específica
+    const mapOptions = {
+      center: this.center,  // Coordenadas de Egaña 651
+      zoom: this.zoom,  // Ajuste del zoom
+      gestureHandling: 'cooperative',  // Permite interacciones táctiles más suaves
+    };
+    this.map = new google.maps.Map(mapElement, mapOptions);
   }
-
-
-  setDefaultLocation() {
-    this.center = { lat: -41.469903, lng: -72.925592 }; // Ubicación de respaldo
-    this.zoom = 8; // Ajusta el zoom de respaldo si es necesario
-  }
-
 
   viewRoutes() {
     this.router.navigate(['/routes']);
   }
 
-
   requestHelp() {
-    // Lógica para solicitar ayuda
     console.log('Solicitar ayuda');
   }
-
 
   viewProfile() {
     this.router.navigate(['/profile']);
   }
 
+  editProfile() {
+    this.router.navigate(['/editar-perfil']);
+  }
 
   logout() {
-    // Limpiar la información de la sesión, por ejemplo:
     localStorage.removeItem('userName');
-    // Redirigir a la página de inicio
-    this.router.navigate(['/home']); // Asegúrate de que esta ruta coincida con tu configuración de rutas
+    this.router.navigate(['/home']);
   }
 }
-
-

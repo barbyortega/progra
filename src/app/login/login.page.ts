@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -31,14 +30,20 @@ export class LoginPage implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    setTimeout(() => {
-      const container = document.querySelector('.login-container');
-      if (container) {
-        container.classList.add('animated');
-      }
-    }, 0);
+    const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('email');
+    const userPassword = localStorage.getItem('password');
+  
+    if (userName && userEmail && userPassword) {
+      // Aquí ya tienes los datos del usuario, que deberían persistir
+      console.log('Usuario cargado:', { userName, userEmail, userPassword });
+      // Puedes establecer estos datos en tu estado de la aplicación o en tu interfaz
+    } else {
+      console.log('No se encontraron datos en localStorage, el usuario no está autenticado');
+      // Redirige al usuario al login si no están los datos en localStorage
+    }
   }
-
+  
   onLogin() {
     this.error = '';
 

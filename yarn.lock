@@ -282,10 +282,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/core@*", "@angular/core@^18.0.0 || ^19.0.0", "@angular/core@^18.2.13", "@angular/core@>=16.0.0", "@angular/core@18.2.8":
-  version "18.2.13"
-  resolved "https://registry.npmjs.org/@angular/core/-/core-18.2.13.tgz"
-  integrity sha512-8mbWHMgO95OuFV1Ejy4oKmbe9NOJ3WazQf/f7wks8Bck7pcihd0IKhlPBNjFllbF5o+04EYSwFhEtvEgjMDClA==
+"@angular/core@*", "@angular/core@^18.0.0 || ^19.0.0", "@angular/core@^18.2.8", "@angular/core@>=16.0.0", "@angular/core@18.2.8":
+  version "18.2.8"
+  resolved "https://registry.npmjs.org/@angular/core/-/core-18.2.8.tgz"
+  integrity sha512-NwIuX/Iby1jT6Iv1/s6S3wOFf8xfuQR3MPGvKhGgNtjXLbHG+TXceK9+QPZC0s9/Z8JR/hz+li34B79GrIKgUg==
   dependencies:
     tslib "^2.3.0"
 
@@ -1296,6 +1296,11 @@
   resolved "https://registry.npmjs.org/@capacitor/app/-/app-6.0.1.tgz"
   integrity sha512-0kXbOl7LPPMFVcAii3u/7Ps0DvXlr7dtHT97r9J1faDlgdQLQUvtGp48tjvFm48gqHI0aOPRJnTBr5JXW4ETYg==
 
+"@capacitor/camera@^6.1.1":
+  version "6.1.1"
+  resolved "https://registry.npmjs.org/@capacitor/camera/-/camera-6.1.1.tgz"
+  integrity sha512-bKBGQS59178KzzBlao2+qaGZ1+7BFTZiEzLpsLbaUnp/qsc1KduSdrqfyEOpHkFLnu6N/YRKmmCzJpuytZTHfQ==
+
 "@capacitor/cli@6.1.2":
   version "6.1.2"
   resolved "https://registry.npmjs.org/@capacitor/cli/-/cli-6.1.2.tgz"
@@ -1320,7 +1325,7 @@
     tslib "^2.4.0"
     xml2js "^0.5.0"
 
-"@capacitor/core@^6.0.0", "@capacitor/core@^6.1.0", "@capacitor/core@6.1.2":
+"@capacitor/core@^6.0.0", "@capacitor/core@^6.1.0", "@capacitor/core@^6.1.2":
   version "6.1.2"
   resolved "https://registry.npmjs.org/@capacitor/core/-/core-6.1.2.tgz"
   integrity sha512-xFy1/4qLFLp5WCIzIhtwUuVNNoz36+V7/BzHmLqgVJcvotc4MMjswW/TshnPQaLLujEOaLkA4h8ZJ0uoK3ImGg==

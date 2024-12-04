@@ -21,8 +21,8 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
   {
-    path: 'register',  
-    loadChildren: () => import('./registro/registro.module').then(m => m.RegistroModule) 
+    path: 'register',
+    loadChildren: () => import('./registro/registro.module').then(m => m.RegistroModule)
   },
   {
     path: 'conductor-dashboard',
@@ -43,8 +43,12 @@ const routes: Routes = [
     data: { role: 'pasajero' }
   },
   {
-    path: 'recuperacion',  // Asegúrate de que este módulo esté correctamente configurado
+    path: 'recuperacion',
     loadChildren: () => import('./recuperacion/recuperacion.module').then(m => m.RecuperacionModule)
+  },
+  {
+    path: 'editar-perfil',
+    loadChildren: () => import('./editar-perfil/editar-perfil.module').then(m => m.EditarPerfilPageModule)
   },
   {
     path: 'not-found',

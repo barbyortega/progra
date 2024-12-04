@@ -4,7 +4,6 @@
     <ion-buttons slot="end">
       <ion-button (click)="logout()">
         <ion-icon name="log-out-outline"></ion-icon>
-        
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -72,6 +71,10 @@
       <ion-icon name="help-circle-outline"></ion-icon>
       <ion-label>Solicitar Ayuda</ion-label>
     </ion-button>
+    <ion-button expand="full" color="primary" (click)="editProfile()">
+      <ion-icon name="create-outline"></ion-icon>
+      <ion-label>Editar Perfil</ion-label>
+    </ion-button>
   </div>
 </ion-content>
 
@@ -85,7 +88,6 @@
       <ion-button expand="full" (click)="logout()">
         Cerrar Sesión
       </ion-button>
-
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
